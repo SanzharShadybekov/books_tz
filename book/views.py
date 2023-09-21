@@ -45,7 +45,10 @@ class BooksViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericView
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.BookListSerializer
-        return serializers.BookDetailSerializer
+        elif self.action == 'retrieve':
+            return serializers.BookDetailSerializer
+        elif self.action == 'reviews':
+            return ReviewSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
